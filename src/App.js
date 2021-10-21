@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
-import {useState} from "react"
+import { useState } from "react";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -35,10 +35,15 @@ function App() {
       reminder: true,
     },
   ]);
+
+  // Delete task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
   return (
     <div className="container">
       <Header />
-      <Tasks tasks={tasks}/>
+      {tasks.length > 0 ? <Tasks onDelete={deleteTask} tasks={tasks} /> : "No tasks made yet!"}
     </div>
   );
 }
